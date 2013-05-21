@@ -3,13 +3,12 @@ let s:source = {
       \ 'kind': 'plugin',
       \ 'mark': '[look]',
       \ 'max_candidates': 15,
-      \ 'min_pattern_length' : 4,
+      \ 'min_pattern_length' : 3,
       \ 'is_volatile' : 1,
       \ }
 
 function! s:source.get_keyword_list(cur_keyword_str)
-  if !(neocomplcache#is_text_mode() || neocomplcache#within_comment())
-        \ || a:cur_keyword_str !~ '^[[:alpha:]]\+$'
+  if a:cur_keyword_str !~ '^[[:alpha:]]\+$'
     return []
   endif
   let list = split(neocomplcache#util#system(
